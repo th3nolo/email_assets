@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Assets</title>
+</head>
+<body>
+    <h1>Email Assets</h1>
+    <h2>Logos</h2>
+    <ul id="logos"></ul>
+    <h2>Banners</h2>
+    <ul id="banners"></ul>
+    <h2>Icons</h2>
+    <ul id="icons"></ul>
+
+    <script>
+    const folders = ['logos', 'banners', 'icons'];
+    folders.forEach(folder => {
+        fetch(`https://api.github.com/repos/th3nolo/email_assets/contents/images/${folder}`)
+            .then(response => response.json())
+            .then(data => {
+                const list = document.getElementById(folder);
+                data.forEach(file => {
+                    if (file.type === 'file') {
+                        const li = document.createElement('li');
+                        const a = document.createElement('a');
+                        a.href = file.download_url;
+                        a.textContent = file.name;
+                        li.appendChild(a);
+                        list.appendChild(li);
+                    }
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    });
+    </script>
+</body>
+</html>
