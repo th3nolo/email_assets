@@ -7,33 +7,31 @@
 </head>
 <body>
     <h1>Email Assets</h1>
-    <h2>Logos</h2>
-    <ul id="logos"></ul>
-    <h2>Banners</h2>
-    <ul id="banners"></ul>
-    <h2>Icons</h2>
-    <ul id="icons"></ul>
+    
+    <h2>Repository Structure</h2>
+    <pre>
+email_assets/
+├── images/
+│   ├── logos/
+│   ├── banners/
+│   └── icons/
+└── index.html
+    </pre>
 
-    <script>
-    const folders = ['logos', 'banners', 'icons'];
-    folders.forEach(folder => {
-        fetch(`https://api.github.com/repos/th3nolo/email_assets/contents/images/${folder}`)
-            .then(response => response.json())
-            .then(data => {
-                const list = document.getElementById(folder);
-                data.forEach(file => {
-                    if (file.type === 'file') {
-                        const li = document.createElement('li');
-                        const a = document.createElement('a');
-                        a.href = file.download_url;
-                        a.textContent = file.name;
-                        li.appendChild(a);
-                        list.appendChild(li);
-                    }
-                });
-            })
-            .catch(error => console.error('Error:', error));
-    });
-    </script>
+    <h2>Direct Links</h2>
+    <ul>
+        <li><a href="https://th3nolo.github.io/email_assets/images/logos/">Logos Directory</a></li>
+        <li><a href="https://th3nolo.github.io/email_assets/images/banners/">Banners Directory</a></li>
+        <li><a href="https://th3nolo.github.io/email_assets/images/icons/">Icons Directory</a></li>
+    </ul>
+
+    <h2>Sample Image Links (if they exist)</h2>
+    <ul>
+        <li><a href="https://th3nolo.github.io/email_assets/images/logos/logo.png">Sample Logo</a></li>
+        <li><a href="https://th3nolo.github.io/email_assets/images/banners/banner.jpg">Sample Banner</a></li>
+        <li><a href="https://th3nolo.github.io/email_assets/images/icons/icon.svg">Sample Icon</a></li>
+    </ul>
+
+    <p>If you see a blank page when clicking these links, it means the directory or file doesn't exist.</p>
 </body>
 </html>
